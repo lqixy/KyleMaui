@@ -4,12 +4,60 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:KyleMaui.ToDoList"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:controls="clr-namespace:KyleMaui.ToDoList.Controls" 
+    Shell.FlyoutBehavior="Flyout"
+    >
 
-    <ShellContent
+    <Shell.Resources>
+        <Style TargetType="VerticalStackLayout">
+            <Setter Property="Padding" Value="15"/>
+            <Setter Property="Spacing" Value="20"/>
+        </Style>
+        <!---->
+    </Shell.Resources>
+
+    <TabBar>
+        <Tab Title="任务">
+            <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+
+        </Tab>
+
+        <Tab Title="日历">
+            <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+        </Tab>
+
+        <Tab Title="我的">
+            <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+        </Tab>
+
+    </TabBar>
+
+    <Shell.FlyoutHeader>
+        <Grid Padding="25">
+
+
+            <Label Text="To Do List"
+               VerticalOptions="Center"
+               TextColor="{StaticResource Primary}"
+               FontSize="28"
+               FontAttributes="Bold"/>
+        </Grid>
+    </Shell.FlyoutHeader>
+    <Shell.FlyoutContent>
+        <controls:CustomFlyoutContent />
+    </Shell.FlyoutContent>
+
 
 </Shell>
 

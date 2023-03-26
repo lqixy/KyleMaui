@@ -1,42 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cateModel="clr-namespace:KyleMaui.ToDoList.Models"
+             xmlns:mpVM="clr-namespace:KyleMaui.ToDoList.ViewModels"
+             x:DataType="mpVM:MainPageItemViewModel"
+             
              x:Class="KyleMaui.ToDoList.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="Day" x:DataType="cateModel:TodoItem">
+                <ContentView Padding="5">
+                    <Label Text="{Binding DeadlineDescript}" />
+                </ContentView>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+            </DataTemplate>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+        </ResourceDictionary>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+    </ContentPage.Resources>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
 
-        </VerticalStackLayout>
-    </ScrollView>
+    <VerticalStackLayout Padding="1">
+        <Grid RowDefinitions="50,*"
+              ColumnDefinitions="*,50">
+
+            <CollectionView ItemsSource="{Binding Categories}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="cateModel:Category">
+                        <ContentView Padding="10" >
+                            <Button Text="{Binding Title}"
+                                    BackgroundColor="{StaticResource Gray100}"
+                                    TextColor="Gray"
+                                    CornerRadius="15" />
+                        </ContentView>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Image Source="boxes.png" Grid.Column="1" HeightRequest="20" VerticalOptions="Center" />
+            <CollectionView Margin="5"
+                             Grid.Row="1"
+                             Grid.ColumnSpan="2"
+                             ItemsSource="{Binding TodoItems}"
+                             >
+                <CollectionView.EmptyView>
+                    <Label Text="没有任务" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="cateModel:TodoItem">
+                        <ContentView Padding="5">
+                            <Frame>
+                                <Grid 
+                                      ColumnDefinitions="20,*">
+                                    <RadioButton HeightRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                                    <VerticalStackLayout Grid.Column="1" >
+                                        <Label   Text="{Binding Content}"  />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </ContentView>
+
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+
+    </VerticalStackLayout>
 
 </ContentPage>
 
