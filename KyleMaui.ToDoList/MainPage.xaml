@@ -8,71 +8,200 @@
              x:Class="KyleMaui.ToDoList.MainPage">
 
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <DataTemplate x:Key="Day" x:DataType="cateModel:TodoItem">
+        <!--<ResourceDictionary>
+            <DataTemplate x:Key="Before" x:DataType="cateModel:TodoItem">
                 <ContentView Padding="5">
-                    <Label Text="{Binding DeadlineDescript}" />
+                    
+                        <Grid 
+                                      ColumnDefinitions="20,*">
+                            <RadioButton HeightRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                            <VerticalStackLayout Grid.Column="1" >
+                                <Label   Text="{Binding Content}"  />
+                            </VerticalStackLayout>
+                        </Grid>
+                </ContentView>
+
+            </DataTemplate>
+            <DataTemplate x:Key="Today"
+                          x:DataType="cateModel:TodoItem">
+                <ContentView Padding="5">
+                        <Grid 
+                                      ColumnDefinitions="20,*">
+                            <RadioButton HeightRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                            <VerticalStackLayout Grid.Column="1" >
+                                <Label   Text="{Binding Content}"  />
+                            </VerticalStackLayout>
+                        </Grid>
                 </ContentView>
 
             </DataTemplate>
 
-        </ResourceDictionary>
+            <DataTemplate x:Key="Future"
+                          x:DataType="cateModel:TodoItem">
+                <ContentView Padding="5">
+                        <Grid 
+                                      ColumnDefinitions="20,*">
+                            <RadioButton HeightRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                            <VerticalStackLayout Grid.Column="1" >
+                                <Label   Text="{Binding Content}"  />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                </ContentView>
+            </DataTemplate>
+            <selector:TodoListTemplateSelector x:Key="dateSelector"
+                                        Before="{StaticResource Before}"
+                                        Today="{StaticResource Today}"
+                                        Future="{StaticResource Future}"/>
+        </ResourceDictionary>-->
 
     </ContentPage.Resources>
 
-
-    <VerticalStackLayout Padding="1">
-        <Grid RowDefinitions="50,*"
+    <AbsoluteLayout >
+        
+        <VerticalStackLayout Padding="1">
+            <Grid RowDefinitions="50,*"
               ColumnDefinitions="*,50">
 
-            <CollectionView ItemsSource="{Binding Categories}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="cateModel:Category">
-                        <ContentView Padding="10" >
-                            <Button Text="{Binding Title}"
+                <CollectionView ItemsSource="{Binding Categories}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="cateModel:Category">
+                            <ContentView Padding="10" >
+                                <Button Text="{Binding Title}"
                                     BackgroundColor="{StaticResource Gray100}"
                                     TextColor="Gray"
                                     CornerRadius="15" />
-                        </ContentView>
+                            </ContentView>
 
-                    </DataTemplate>
+                        </DataTemplate>
 
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <Image Source="boxes.png" Grid.Column="1" HeightRequest="20" VerticalOptions="Center" />
-            <CollectionView Margin="5"
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Image Source="boxes.png" Grid.Column="1" HeightRequest="20" VerticalOptions="Center" />
+                <CollectionView Margin="5"
                              Grid.Row="1"
                              Grid.ColumnSpan="2"
-                             ItemsSource="{Binding TodoItems}"
+                             ItemsSource="{Binding TodoItemGroupeds}"
+                             IsGrouped="True"
                              >
-                <CollectionView.EmptyView>
-                    <Label Text="没有任务" />
-                </CollectionView.EmptyView>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="cateModel:TodoItem">
-                        <ContentView Padding="5">
-                            <Frame>
-                                <Grid 
-                                      ColumnDefinitions="20,*">
-                                    <RadioButton HeightRequest="10" VerticalOptions="Center" HorizontalOptions="End" />
+                    <CollectionView.EmptyView>
+                        <Label Text="没有任务" />
+                    </CollectionView.EmptyView>
+                    <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate x:DataType="cateModel:TodoItemGroup">
+                            <HorizontalStackLayout >
+                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="20"/>
+                                <Image Source="{Binding IconPath}" HeightRequest="10" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+
+                    </CollectionView.GroupHeaderTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="cateModel:TodoItem">
+
+                            <Grid
+                                      ColumnDefinitions="30,*">
+                                <Border Grid.ColumnSpan="2" StrokeShape="RoundRectangle 10,10,10,10"></Border>
+                                <CheckBox HeightRequest="10" HorizontalOptions="Start" />
+                                <SwipeView Grid.Column="1">
+                                    <SwipeView.Resources>
+                                        <Style TargetType="Image">
+                                            <Setter Property="HorizontalOptions" Value="Center"/>
+                                            <Setter Property="VerticalOptions" Value="Center"/>
+                                            <Setter Property="Margin" Value="5"/>
+                                        </Style>
+
+                                    </SwipeView.Resources>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+
+                                            <SwipeItemView
+                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type mpVM:MainPageItemViewModel}},Path=DeleteCommand}"
+                                            CommandParameter="{Binding .}">
+                                                <Grid 
+                                          WidthRequest="80">
+                                                    <BoxView CornerRadius="0,10,0,10"
+                                                 Color="Red"/>
+                                                    <Image Source="trash_white.png"/>
+                                                </Grid>
+
+                                            </SwipeItemView>
+                                            <SwipeItemView>
+                                                <Grid
+                                          WidthRequest="80">
+
+                                                    <BoxView Color="Blue" />
+                                                    <Image Source="calendar_days_white.png"/>
+                                                </Grid>
+
+                                            </SwipeItemView>
+                                            <SwipeItemView
+                                            Command="{Binding Source={x:RelativeSource AncestorType={x:Type mpVM:MainPageItemViewModel}},Path=MarkCommand}"
+                                            CommandParameter="{Binding .}">
+                                                <Grid 
+                                          WidthRequest="80">
+                                                    <BoxView CornerRadius="10,0,10,0"
+                                                 Color="LightBlue"/>
+                                                    <Image  Source="star_regular_white.png"/>
+                                                </Grid>
+
+                                            </SwipeItemView>
+                                        </SwipeItems>
+
+                                    </SwipeView.RightItems>
+
                                     <VerticalStackLayout Grid.Column="1" >
-                                        <Label   Text="{Binding Content}"  />
+
+                                        <Label   Text="{Binding Content}" FontAttributes="Bold" FontSize="Header" />
+
+                                        <HorizontalStackLayout Grid.Column="1" >
+                                            <ContentView Padding="2">
+
+                                                <Label Text="{Binding Deadline, StringFormat='{0:MM/dd}'}"
+                                               FontSize="10" />
+
+                                            </ContentView>
+                                            <ContentView Padding="2">
+
+                                                <Label Text="{Binding Time}"
+                                               FontSize="10"/>
+
+                                            </ContentView>
+                                        </HorizontalStackLayout>
+
                                     </VerticalStackLayout>
-                                </Grid>
-                            </Frame>
-                        </ContentView>
-
-                    </DataTemplate>
-
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
 
 
-    </VerticalStackLayout>
+                                </SwipeView>
+                            </Grid>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+
+
+        </VerticalStackLayout>
+        <ImageButton
+                    Clicked="ImageButton_Clicked"
+                    Source="plus_white.png"
+                    Padding="15"
+                    HorizontalOptions="Center"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="1,1"
+                    BackgroundColor="DeepSkyBlue"
+                    WidthRequest="56"
+                    HeightRequest="56"
+                    CornerRadius="28"
+                    Margin="16"
+                />
+
+    </AbsoluteLayout>
+
 
 </ContentPage>
 

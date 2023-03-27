@@ -3,7 +3,7 @@ namespace KyleMaui.ToDoList.DbContext
 {
     public static class DbConstants
     {
-        public const string DatabaseFilename = "TodoSQLite.db3";
+        private const string DatabaseFilename = "TodoSQLite.db3";
 
         public const SQLite.SQLiteOpenFlags Flags =
              SQLite.SQLiteOpenFlags.ReadWrite |

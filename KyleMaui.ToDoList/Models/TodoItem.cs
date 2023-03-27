@@ -2,7 +2,7 @@
 using SQLite;
 namespace KyleMaui.ToDoList.Models
 {
-    public class TodoItem
+    public class TodoItem: ModelBase
     {
         public TodoItem()
         {
@@ -10,8 +10,8 @@ namespace KyleMaui.ToDoList.Models
 
 
 
-        [PrimaryKey,AutoIncrement]
-        public int Id { get; set; }
+        //[PrimaryKey,AutoIncrement]
+        //public int Id { get; set; }
 
         public string Content { get; set; }
         ///// <summary>
@@ -73,6 +73,37 @@ namespace KyleMaui.ToDoList.Models
         /// 附件
         /// </summary>
         public string Attachment { get; set; }
+        /// <summary>
+        /// 是否标记
+        /// </summary>
+        public bool IsMark { get; set; }
+
+
+        public void Marked()
+        {
+            this.IsMark = true;
+        }
+    }
+
+    public class TodoItemGroup: List<TodoItem>
+    {
+        
+
+        public TodoItemGroup(string title,List<TodoItem> items):base(items)
+        {
+            Title = title;
+        }
+
+        public string Title { get; private set; }
+
+        public string IconPath { get; set; } = "down.png";
+
+        public List<TodoItemGroup> TodoItems
+        {
+            get;
+            private set;
+        } = new List<TodoItemGroup>();
+
     }
 
 

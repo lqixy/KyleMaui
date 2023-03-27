@@ -2,7 +2,7 @@
 using System;
 namespace KyleMaui.ToDoList.Models
 {
-    public class Category
+    public class Category: ModelBase
     {
         public Category()
         {
@@ -17,8 +17,8 @@ namespace KyleMaui.ToDoList.Models
             CreationTime = DateTime.Now;
         }
 
-        [PrimaryKey,AutoIncrement]
-        public int Id { get; set; }
+        //[PrimaryKey,AutoIncrement]
+        //public int Id { get; set; }
 
         public string Title { get; set; }
 

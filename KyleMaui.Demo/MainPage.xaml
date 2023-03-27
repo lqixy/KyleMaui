@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KyleMaui.Demo.MainPage">
+
+
+    <AbsoluteLayout>
+        <ImageButton
+
+            Clicked="ImageButton_Clicked"
+                    Padding="15"
+                    HorizontalOptions="Center"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    AbsoluteLayout.LayoutBounds="1,1"
+                    BackgroundColor="DeepSkyBlue"
+                    WidthRequest="56"
+                    HeightRequest="56"
+                    CornerRadius="28"
+                    Margin="16"
+                />
+
+    </AbsoluteLayout>
+
+</ContentPage>
+

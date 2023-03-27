@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using KyleMaui.ToDoList.Models;
 using SQLite;
 
@@ -21,6 +22,13 @@ namespace KyleMaui.ToDoList.DbContext
         {
             await Init();
             return await Connection.Table<TodoItem>().ToListAsync();
+        }
+
+        public async Task<List<TodoItem>> Get(Expression<Func<TodoItem,bool>> predExpr)
+        {
+            await Init();
+            return await Connection.Table<TodoItem>()
+                .Where(predExpr).ToListAsync();
         }
 
         public async Task<TodoItem> GetItem(int id)

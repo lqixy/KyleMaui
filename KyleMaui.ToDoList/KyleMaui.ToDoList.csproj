@@ -34,6 +34,50 @@
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\down.svg" />
+	  <MauiImage Remove="Resources\Images\up.svg" />
+	  <MauiImage Remove="Resources\Images\right.svg" />
+	  <MauiImage Remove="Resources\Images\plus_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_regular_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_regular_white.svg" />
+	  <MauiImage Remove="Resources\Images\calendar_days_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\down.svg" />
+	  <MauiImage Remove="Resources\Images\up.svg" />
+	  <MauiImage Remove="Resources\Images\trash_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_solid_gray.svg" />
+	  <MauiImage Remove="Resources\Images\trash_white.svg" />
+	  <MauiImage Remove="Resources\Images\plus_white.svg" />
+	  <MauiImage Remove="Resources\Images\right.svg" />
+	  <MauiImage Remove="Resources\Images\calendar_days_white.svg" />
+	  <MauiImage Remove="Resources\Images\star_solid_white.svg" />
+	  <MauiImage Remove="Resources\Images\plus_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_regular_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_regular_white.svg" />
+	  <MauiImage Remove="Resources\Images\calendar_days_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\down.svg" />
+	  <MauiImage Remove="Resources\Images\up.svg" />
+	  <MauiImage Remove="Resources\Images\trash_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_solid_gray.svg" />
+	  <MauiImage Remove="Resources\Images\trash_white.svg" />
+	  <MauiImage Remove="Resources\Images\plus_white.svg" />
+	  <MauiImage Remove="Resources\Images\right.svg" />
+	  <MauiImage Remove="Resources\Images\calendar_days_white.svg" />
+	  <MauiImage Remove="Resources\Images\star_solid_white.svg" />
+	  <MauiImage Remove="Resources\Images\plus_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_regular_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_regular_white.svg" />
+	  <MauiImage Remove="Resources\Images\calendar_days_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\down.svg" />
+	  <MauiImage Remove="Resources\Images\up.svg" />
+	  <MauiImage Remove="Resources\Images\trash_lightblue.svg" />
+	  <MauiImage Remove="Resources\Images\star_solid_gray.svg" />
+	  <MauiImage Remove="Resources\Images\trash_white.svg" />
+	  <MauiImage Remove="Resources\Images\plus_white.svg" />
+	  <MauiImage Remove="Resources\Images\right.svg" />
+	  <MauiImage Remove="Resources\Images\calendar_days_white.svg" />
+	  <MauiImage Remove="Resources\Images\star_solid_white.svg" />
+	</ItemGroup>
+	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
@@ -56,6 +100,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
 		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -65,6 +110,21 @@
 	  <None Remove="Views\" />
 	  <None Remove="Pages\" />
 	  <None Remove="Controls\" />
+	  <None Remove="Selectors\" />
+	  <None Remove="Services\" />
+	  <None Remove="Resources\Images\down.svg" />
+	  <None Remove="Resources\Images\right.svg" />
+	  <None Remove="Resources\Images\up.svg" />
+	  <None Remove="Resources\Images\calendar_days_lightblue.svg" />
+	  <None Remove="Resources\Images\calendar_days_white.svg" />
+	  <None Remove="Resources\Images\plus_lightblue.svg" />
+	  <None Remove="Resources\Images\star_solid_gray.svg" />
+	  <None Remove="Resources\Images\trash_lightblue.svg" />
+	  <None Remove="Resources\Images\trash_white.svg" />
+	  <None Remove="Resources\Images\star_regular_white.svg" />
+	  <None Remove="Resources\Images\star_regular_lightblue.svg" />
+	  <None Remove="Resources\Images\star_solid_white.svg" />
+	  <None Remove="Resources\Images\plus_white.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="DbContext\" />
@@ -73,5 +133,80 @@
 	  <Folder Include="Views\" />
 	  <Folder Include="Pages\" />
 	  <Folder Include="Controls\" />
+	  <Folder Include="Selectors\" />
+	  <Folder Include="Services\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\down.svg" />
+	  <BundleResource Include="Resources\Images\down.svg" />
+	  <BundleResource Include="Resources\Images\right.svg" />
+	  <BundleResource Include="Resources\Images\right.svg" />
+	  <BundleResource Include="Resources\Images\up.svg" />
+	  <BundleResource Include="Resources\Images\up.svg" />
+	  <BundleResource Include="Resources\Images\down.svg" />
+	  <BundleResource Include="Resources\Images\up.svg" />
+	  <BundleResource Include="Resources\Images\right.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_white.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\plus_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_gray.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_gray.svg" />
+	  <BundleResource Include="Resources\Images\trash_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\trash_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\trash_white.svg" />
+	  <BundleResource Include="Resources\Images\trash_white.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_white.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_white.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_white.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_white.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\down.svg" />
+	  <BundleResource Include="Resources\Images\up.svg" />
+	  <BundleResource Include="Resources\Images\trash_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_gray.svg" />
+	  <BundleResource Include="Resources\Images\trash_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_white.svg" />
+	  <BundleResource Include="Resources\Images\right.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_white.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_white.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\down.svg" />
+	  <BundleResource Include="Resources\Images\up.svg" />
+	  <BundleResource Include="Resources\Images\trash_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_gray.svg" />
+	  <BundleResource Include="Resources\Images\trash_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_white.svg" />
+	  <BundleResource Include="Resources\Images\right.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_white.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_regular_white.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\down.svg" />
+	  <BundleResource Include="Resources\Images\up.svg" />
+	  <BundleResource Include="Resources\Images\trash_lightblue.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_gray.svg" />
+	  <BundleResource Include="Resources\Images\trash_white.svg" />
+	  <BundleResource Include="Resources\Images\plus_white.svg" />
+	  <BundleResource Include="Resources\Images\right.svg" />
+	  <BundleResource Include="Resources\Images\calendar_days_white.svg" />
+	  <BundleResource Include="Resources\Images\star_solid_white.svg" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\..\github\The49.Maui.BottomSheet\src\The49.Maui.BottomSheet.csproj" />
 	</ItemGroup>
 </Project>

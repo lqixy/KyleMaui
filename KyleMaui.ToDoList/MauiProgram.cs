@@ -5,6 +5,8 @@ global using KyleMaui.ToDoList.ViewModels;
 global using KyleMaui.ToDoList.DbContext;
 
 using Microsoft.Extensions.Logging;
+using KyleMaui.ToDoList.Services;
+using The49.Maui.BottomSheet;
 
 namespace KyleMaui.ToDoList;
 
@@ -15,6 +17,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseBottomSheet()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -29,6 +32,9 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
 
         builder.Services.AddSingleton<Database>();
+        builder.Services.AddSingleton<CategoryDbContext>();
+        builder.Services.AddSingleton<ITodoItemService, TodoItemService>();
+        builder.Services.AddSingleton<ICategoryService, CategoryService>();
 
         return builder.Build();
     }

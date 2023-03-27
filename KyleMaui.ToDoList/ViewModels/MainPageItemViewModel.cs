@@ -1,41 +1,74 @@
 ﻿using System;
+using CommunityToolkit.Mvvm.Input;
+using KyleMaui.ToDoList.Services;
+using Newtonsoft.Json;
+
 namespace KyleMaui.ToDoList.ViewModels
 {
     public partial class MainPageItemViewModel : ObservableObject
     {
-        private Random random = new Random();
-        public ObservableCollection<Category> Categories { get; } = new();
+        public ObservableCollection<Category> Categories { get; private set; } = new();
 
-        public ObservableCollection<TodoItem> TodoItems { get; } = new();
+        //public ObservableCollection<TodoItem> TodoItems { get; set; } = new();
 
-        public MainPageItemViewModel()
+        public ObservableCollection<TodoItemGroup> TodoItemGroupeds { get; private set; } = new ObservableCollection<TodoItemGroup>();
+
+        private readonly ITodoItemService todoItemService;
+        private readonly ICategoryService categoryService;
+        //private int skipCount = 0;
+
+        //public string IconPath { get; set; } = "up.png";
+
+        public MainPageItemViewModel(ITodoItemService service, ICategoryService categoryService)
         {
             Categories = new ObservableCollection<Category>
             {
-                new Category(1,"所有"),
-                new Category(2,"工作"),
-                new Category(3,"个人"),
-                new Category(4,"心愿单"),
-                new Category(5,"生日"),
+                new Category(1,"所有")
             };
 
-            var repeats = Enum.GetValues(typeof(Repeat)) as Repeat[];
+            this.todoItemService = service;
+            this.categoryService = categoryService;
 
-            var todos = Enumerable.Range(1, 20)
-                .Select(x => new TodoItem
-                {
-                    Id = x,
-                    Content = $"{x}",
-                    Deadline = DateTime.Now.AddDays(random.Next(1, 30)),
-                    Time = $"{DateTime.Now.AddHours(random.Next(1, 12)):HH:mm}",
-                    RemindTime = $"{DateTime.Now.AddHours(random.Next(1, 12)):HH:mm}",
-                    EnableRemind = true,
-                    Repeat = repeats[random.Next(0, repeats.Length)]
-                });
-            TodoItems = new ObservableCollection<TodoItem>(todos);
 
+            Task.Run(async () => await LoadData());
         }
 
+        async Task LoadData()
+        {
+            var todos = await todoItemService.GetAll();
+
+            var groupeds = todos.GroupBy(x => x.DeadlineDescript)
+                  .Select(x => new TodoItemGroup(x.Key, x.ToList()));
+
+            TodoItemGroupeds = new ObservableCollection<TodoItemGroup>(groupeds);
+
+            var categories = await categoryService.GetAll();
+            foreach (var item in categories)
+            {
+                Categories.Add(item);
+            }
+        }
+
+
+        [RelayCommand]
+        async void Mark(TodoItem item)
+        {
+            //await service.Delete(item.Id);
+            item.Marked();
+            await todoItemService.Save(item);
+        }
+
+        [RelayCommand]
+        async void Delete(TodoItem item)
+        {
+            await todoItemService.Delete(item);
+        }
+
+        [RelayCommand]
+        async void Reload()
+        {
+           
+        }
 
         [ObservableProperty]
         Category category;
