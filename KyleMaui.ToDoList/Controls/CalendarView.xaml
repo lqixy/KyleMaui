@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="this"
+             xmlns:models="clr-namespace:KyleMaui.ToDoList.ViewModels"
+             x:Class="KyleMaui.ToDoList.Controls.CalendarView">
+
+    <Grid ColumnDefinitions="10,Auto,*">
+
+        <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="10">
+            <Image HeightRequest="10" WidthRequest="15" Source="angle_left_solid.png" >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={x:Reference this}, Path=PreviousMonthCommand}"/>
+
+                </Image.GestureRecognizers>
+
+            </Image>
+            
+        <Label Text="{Binding Source={x:Reference this}, Path=SelectedDate,StringFormat='{0:MM月,yyyy}'}"
+           FontSize="20"
+           FontAttributes="Bold"/>
+            <Image HeightRequest="10" WidthRequest="15" Source="angle_right_solid.png">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={x:Reference this},Path=NextMonthCommand}" />
+
+                </Image.GestureRecognizers>
+
+            </Image>
+
+        </HorizontalStackLayout>
+
+    </Grid>
+    <Grid ColumnDefinitions="*,*,*,*,*,*,*"  >
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+        </Grid.Resources>
+        <Label Text="周日" />
+        <Label Text="周一"  Grid.Column="1" />
+        <Label Text="周二"  Grid.Column="2" />
+        <Label Text="周三"  Grid.Column="3" />
+        <Label Text="周四"  Grid.Column="4" />
+        <Label Text="周五"  Grid.Column="5" />
+        <Label Text="周六"  Grid.Column="6" />
+    </Grid>
+    
+
+    <CollectionView ItemsSource="{Binding Source={x:Reference this},Path= Dates}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="7" />
+
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate> 
+            <DataTemplate x:DataType="models:CalendarViewModel">
+                <Border WidthRequest="10" HeightRequest="40"
+                        Padding="7"
+                       StrokeShape="RoundRectangle 10,10,10,10" >
+                      
+                        <Label Text="{Binding Date,StringFormat='{0:dd}'}" FontSize="18"
+                               HorizontalTextAlignment="Center"
+                               FontAttributes="Bold"
+                               >
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsCurrentDate}" Value="True">
+                                    <Setter Property="TextColor" Value="White"/>
+
+                                </DataTrigger>
+                                <DataTrigger TargetType="Label" Binding="{Binding IsToday}"
+                                             Value="True">
+                                <Setter Property="TextColor" Value="LightBlue" />
+
+                            </DataTrigger>
+                            </Label.Triggers>
+
+                        </Label>
+                     
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border"  Binding="{Binding IsCurrentDate}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+
+                        </DataTrigger>
+                        <DataTrigger TargetType="Border"  Binding="{Binding IsCurrentDate}" Value="False">
+                            <Setter Property="BackgroundColor" Value="Transparent"/>
+
+                        </DataTrigger>
+                    </Border.Triggers>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference this},Path=CurrentDateCommand}"
+                            CommandParameter="{Binding .}"
+                                              />
+
+                    </Border.GestureRecognizers>
+
+                </Border>
+               
+            </DataTemplate>
+
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+</StackLayout>
+

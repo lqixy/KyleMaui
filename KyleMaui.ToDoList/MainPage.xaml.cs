@@ -16,14 +16,14 @@ public partial class MainPage : ContentPage
 
     
 
-    void ImageButton_Clicked(System.Object sender, System.EventArgs e)
-    {
-        var page = new CreateTodoItemBottomSheetPage();
+    //void ImageButton_Clicked(System.Object sender, System.EventArgs e)
+    //{
+    //    var page = new CreateTodoItemBottomSheetPage();
 
-        page.ShowHandle = true;
+    //    page.ShowHandle = true;
 
-        page.Show(Window);
-    }
+    //    page.Show(Window);
+    //}
 }
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using CommunityToolkit.Mvvm.Input;
+using KyleMaui.ToDoList.Pages;
 using KyleMaui.ToDoList.Services;
 using Newtonsoft.Json;
 
@@ -67,8 +68,20 @@ namespace KyleMaui.ToDoList.ViewModels
         [RelayCommand]
         async void Reload()
         {
-           
+
         }
+
+        [RelayCommand]
+        async void GoToDetail(TodoItem item)
+        {
+            if (item is null) item = new TodoItem();
+            await Shell.Current.GoToAsync(nameof(TodoItemDetailPage), true,
+                new Dictionary<string, object>
+                {
+                    {nameof(TodoItem), item}
+                });
+        }
+
 
         [ObservableProperty]
         Category category;

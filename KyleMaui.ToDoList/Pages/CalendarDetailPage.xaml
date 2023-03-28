@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:KyleMaui.ToDoList.Controls"
+             x:Class="KyleMaui.ToDoList.Pages.CalendarDetailPage">
+
+    <!--<xc:CalendarView />-->
+    <VerticalStackLayout>
+        <customControls:CalendarView  />
+    </VerticalStackLayout>
+</ContentPage>

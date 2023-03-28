@@ -6,6 +6,7 @@ namespace KyleMaui.ToDoList.Models
     {
         public TodoItem()
         {
+            Deadline = DateTime.Now;
         }
 
 
